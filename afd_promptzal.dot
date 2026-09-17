@@ -1,0 +1,68 @@
+digraph AFD_PromptZal {
+  rankdir=LR;
+  node [fontname="Helvetica", fontsize=11];
+  edge [fontname="Helvetica", fontsize=9];
+
+  inicio [shape=point];
+  inicio -> S0;
+
+  S1 [shape=doublecircle, style=filled, fillcolor="#DBEAFE"];
+  S2 [shape=doublecircle, style=filled, fillcolor="#DBEAFE"];
+  S2c [shape=doublecircle, style=filled, fillcolor="#DBEAFE"];
+  S3b [shape=doublecircle, style=filled, fillcolor="#DBEAFE"];
+  S4 [shape=doublecircle, style=filled, fillcolor="#DBEAFE"];
+  S5 [shape=doublecircle, style=filled, fillcolor="#DBEAFE"];
+  S0 [shape=circle];
+  S2b [shape=circle];
+  S3 [shape=circle];
+  S6 [shape=circle];
+  S6a [shape=circle];
+  S6b [shape=circle];
+  S6c [shape=circle];
+  qE [shape=circle, style=filled, fillcolor="#FEE2E2", fontcolor="#991B1B"];
+
+  S0 -> S1 [label="letra"];
+  S1 -> S1 [label="letra|digito|_"];
+  S1 -> S0 [label="otro (acepta)"];
+
+  S0 -> S2 [label="digito"];
+  S2 -> S2 [label="digito"];
+  S2 -> S2b [label="."];
+  S2 -> S0 [label="otro (acepta ENTERO)"];
+  S2b -> S2c [label="digito"];
+  S2b -> qE [label="otro", color="#B91C1C", fontcolor="#B91C1C"];
+  S2c -> S2c [label="digito"];
+  S2c -> S0 [label="otro (acepta DECIMAL)"];
+
+  S0 -> S3 [label="@"];
+  S3 -> S3b [label="letra"];
+  S3 -> qE [label="otro", color="#B91C1C", fontcolor="#B91C1C"];
+  S3b -> S3b [label="letra"];
+  S3b -> S0 [label="otro (acepta DIRECTIVA)"];
+
+  S0 -> S4 [label="comilla"];
+  S4 -> S4 [label="cualquiera"];
+  S4 -> S0 [label="comilla (acepta CADENA)"];
+  S4 -> qE [label="salto de linea / EOF", color="#B91C1C", fontcolor="#B91C1C"];
+
+  S0 -> S5 [label="guion"];
+  S5 -> S0 [label="mayor-que (acepta FLECHA)"];
+  S5 -> qE [label="otro", color="#B91C1C", fontcolor="#B91C1C"];
+
+  S0 -> S6 [label="diagonal"];
+  S6 -> S6a [label="diagonal"];
+  S6 -> S6b [label="asterisco"];
+  S6 -> qE [label="otro", color="#B91C1C", fontcolor="#B91C1C"];
+  S6a -> S6a [label="cualquiera"];
+  S6a -> S0 [label="salto de linea / EOF"];
+  S6b -> S6b [label="cualquiera"];
+  S6b -> S6c [label="asterisco"];
+  S6b -> qE [label="EOF sin cerrar", color="#B91C1C", fontcolor="#B91C1C"];
+  S6c -> S0 [label="diagonal (cierra)"];
+  S6c -> S6c [label="asterisco"];
+  S6c -> S6b [label="otro"];
+  S6c -> qE [label="EOF sin cerrar", color="#B91C1C", fontcolor="#B91C1C"];
+
+  S0 -> S0 [label="simbolo, espacio o salto"];
+  S0 -> qE [label="caracter no reconocido", color="#B91C1C", fontcolor="#B91C1C"];
+}

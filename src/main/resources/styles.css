@@ -1,0 +1,157 @@
+.root {
+    -fx-background-color: #F1F0F8;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+    -fx-background-color: white;
+    -fx-padding: 24 16 24 16;
+    -fx-background-radius: 0 20 20 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 18, 0.1, 4, 0);
+}
+
+.sidebar-titulo {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a1a1a;
+}
+
+.sidebar-boton {
+    -fx-background-color: transparent;
+    -fx-text-fill: #444;
+    -fx-font-size: 13px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10 14 10 14;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-max-width: Infinity;
+}
+.sidebar-boton:hover {
+    -fx-background-color: #F1F0F8;
+}
+.sidebar-boton:pressed {
+    -fx-background-color: #E4E2F5;
+}
+.sidebar-boton-activo {
+    -fx-background-color: #1E1B2E;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10 14 10 14;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-max-width: Infinity;
+    -fx-effect: dropshadow(gaussian, rgba(30,27,46,0.35), 10, 0.3, 0, 3);
+}
+
+/* ---------- Tarjetas ---------- */
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 18;
+    -fx-padding: 18;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 16, 0.15, 0, 5);
+}
+.card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.13), 20, 0.2, 0, 7);
+}
+
+.card-oscura {
+    -fx-background-color: linear-gradient(to bottom right, #2B2735, #16141C);
+    -fx-background-radius: 18;
+    -fx-padding: 18;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 18, 0.25, 0, 6);
+}
+.card-oscura:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 22, 0.3, 0, 8);
+}
+.card-oscura .label {
+    -fx-text-fill: white;
+}
+
+.card-titulo {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a1a1a;
+}
+.card-subtitulo {
+    -fx-font-size: 11px;
+    -fx-text-fill: #8a8a8a;
+}
+
+/* ---------- Botones de accion (con sombra y profundidad) ---------- */
+.boton-primario {
+    -fx-background-color: #1E1B2E;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-padding: 10 22 10 22;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(30,27,46,0.45), 12, 0.3, 0, 4);
+}
+.boton-primario:hover {
+    -fx-background-color: #2B2740;
+    -fx-effect: dropshadow(gaussian, rgba(30,27,46,0.6), 16, 0.35, 0, 6);
+}
+.boton-primario:pressed {
+    -fx-background-color: #100E18;
+    -fx-effect: dropshadow(gaussian, rgba(30,27,46,0.3), 6, 0.2, 0, 2);
+    -fx-translate-y: 1;
+}
+
+.boton-secundario {
+    -fx-background-color: white;
+    -fx-text-fill: #1E1B2E;
+    -fx-font-size: 13px;
+    -fx-background-radius: 12;
+    -fx-padding: 10 20 10 20;
+    -fx-cursor: hand;
+    -fx-border-color: #E0DEF0;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 8, 0.1, 0, 2);
+}
+.boton-secundario:hover {
+    -fx-background-color: #F7F6FC;
+}
+
+/* ---------- Editor ---------- */
+.editor {
+    -fx-font-family: "Consolas", monospace;
+    -fx-font-size: 13px;
+    -fx-background-color: transparent;
+    -fx-control-inner-background: #FAFAFC;
+    -fx-background-radius: 12;
+}
+
+/* ---------- Tablas ---------- */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-background-radius: 12;
+}
+.table-view .column-header-background {
+    -fx-background-color: #F5F4FA;
+    -fx-background-radius: 10 10 0 0;
+}
+.table-row-cell {
+    -fx-background-color: white;
+}
+.table-row-cell:odd {
+    -fx-background-color: #FAFAFC;
+}
+
+/* ---------- Badges de estado ---------- */
+.badge-ok {
+    -fx-background-color: #DCFCE7;
+    -fx-text-fill: #15803D;
+    -fx-background-radius: 10;
+    -fx-padding: 3 10 3 10;
+    -fx-font-size: 11px;
+}
+.badge-error {
+    -fx-background-color: #FEE2E2;
+    -fx-text-fill: #B91C1C;
+    -fx-background-radius: 10;
+    -fx-padding: 3 10 3 10;
+    -fx-font-size: 11px;
+}
