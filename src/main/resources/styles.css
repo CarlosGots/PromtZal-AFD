@@ -139,6 +139,12 @@
 .table-row-cell:odd {
     -fx-background-color: #FAFAFC;
 }
+.table-row-cell:selected {
+    -fx-background-color: #E4E2F5;
+}
+.table-row-cell:selected .text {
+    -fx-fill: #1E1B2E;
+}
 
 /* ---------- Badges de estado ---------- */
 .badge-ok {

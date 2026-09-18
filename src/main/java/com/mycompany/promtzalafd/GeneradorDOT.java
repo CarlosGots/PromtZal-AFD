@@ -22,23 +22,28 @@ public class GeneradorDOT {
         dot.append("  node [fontname=\"Helvetica\", fontsize=11];\n");
         dot.append("  edge [fontname=\"Helvetica\", fontsize=9];\n\n");
 
-        // Estado inicial
         dot.append("  inicio [shape=point];\n");
         dot.append("  inicio -> S0;\n\n");
 
-        // Estados de aceptacion (doble circulo) vs intermedios (circulo simple) vs error
-        String[] aceptacion = {"S1", "S2", "S2c", "S3b", "S4", "S5"};
-        String[] intermedios = {"S0", "S2b", "S3", "S6", "S6a", "S6b", "S6c"};
+        // Estados de aceptacion: S0 se incluye porque CADENA y FLECHA
+        // aceptan justo al regresar a S0 (la transicion de cierre no
+        // "vive" en S4/S5, aterriza en S0). S1, S2, S2c, S3b y S6a son
+        // de aceptacion porque, estando en ellos, el lexema ya es valido
+        // sin necesidad de salir (propiedad de prefijo).
+        String[] aceptacion = {"S0", "S1", "S2", "S2c", "S3b", "S6a"};
+        String[] intermedios = {"S2b", "S3", "S4", "S5", "S6", "S6b", "S6c"};
 
+        dot.append("  S0 [shape=doublecircle, style=filled, fillcolor=\"#DBEAFE\"];\n");
         for (String s : aceptacion) {
-            dot.append("  ").append(s).append(" [shape=doublecircle, style=filled, fillcolor=\"#DBEAFE\"];\n");
+            if (!s.equals("S0")) {
+                dot.append("  ").append(s).append(" [shape=doublecircle, style=filled, fillcolor=\"#DBEAFE\"];\n");
+            }
         }
         for (String s : intermedios) {
             dot.append("  ").append(s).append(" [shape=circle];\n");
         }
         dot.append("  qE [shape=circle, style=filled, fillcolor=\"#FEE2E2\", fontcolor=\"#991B1B\"];\n\n");
 
-        // Transiciones
         dot.append("  S0 -> S1 [label=\"letra\"];\n");
         dot.append("  S1 -> S1 [label=\"letra|digito|_\"];\n");
         dot.append("  S1 -> S0 [label=\"otro (acepta)\"];\n\n");

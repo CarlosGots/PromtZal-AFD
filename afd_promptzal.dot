@@ -6,17 +6,17 @@ digraph AFD_PromptZal {
   inicio [shape=point];
   inicio -> S0;
 
+  S0 [shape=doublecircle, style=filled, fillcolor="#DBEAFE"];
   S1 [shape=doublecircle, style=filled, fillcolor="#DBEAFE"];
   S2 [shape=doublecircle, style=filled, fillcolor="#DBEAFE"];
   S2c [shape=doublecircle, style=filled, fillcolor="#DBEAFE"];
   S3b [shape=doublecircle, style=filled, fillcolor="#DBEAFE"];
-  S4 [shape=doublecircle, style=filled, fillcolor="#DBEAFE"];
-  S5 [shape=doublecircle, style=filled, fillcolor="#DBEAFE"];
-  S0 [shape=circle];
+  S6a [shape=doublecircle, style=filled, fillcolor="#DBEAFE"];
   S2b [shape=circle];
   S3 [shape=circle];
+  S4 [shape=circle];
+  S5 [shape=circle];
   S6 [shape=circle];
-  S6a [shape=circle];
   S6b [shape=circle];
   S6c [shape=circle];
   qE [shape=circle, style=filled, fillcolor="#FEE2E2", fontcolor="#991B1B"];

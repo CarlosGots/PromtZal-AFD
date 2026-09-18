@@ -233,7 +233,6 @@ public class Lexer {
                 return;
             }
             if (c == '\n') {
-                // No se consume el \n: se deja para que S0 actualice la fila normalmente.
                 errores.add(new ErrorLexico(
                         ErrorLexico.TipoErrorLexico.CADENA_SIN_CERRAR,
                         lex.toString(), filaInicio, colInicio));
@@ -276,7 +275,6 @@ public class Lexer {
         while (hayMas() && peek() != '\n') {
             consumir();
         }
-        // no genera token; el \n (si existe) lo procesa S0 en la siguiente vuelta
     }
 
     private void estadoS6b(int filaInicio, int colInicio) {
@@ -290,11 +288,9 @@ public class Lexer {
             char c = consumir();
             if (c == '*') {
                 if (estadoS6c(filaInicio, colInicio)) {
-                    return; // comentario cerrado (o error ya reportado)
+                    return;
                 }
-                // si no se cerro, seguimos en S6b normalmente
             }
-            // cualquier otro caracter (incluye \n) se descarta dentro del comentario
         }
     }
 
@@ -310,11 +306,11 @@ public class Lexer {
             char c = peek();
             if (c == '/') {
                 consumir();
-                return true; // cierra el comentario de bloque
+                return true;
             } else if (c == '*') {
-                consumir(); // se queda en S6c (maneja casos como "**/")
+                consumir();
             } else {
-                return false; // regresa a S6b; ese caracter lo consume el loop de S6b
+                return false;
             }
         }
     }

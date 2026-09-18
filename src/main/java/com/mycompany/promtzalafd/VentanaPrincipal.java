@@ -15,7 +15,10 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.chart.PieChart;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
@@ -34,7 +37,7 @@ public class VentanaPrincipal extends Application {
     private Label labelTotalTokens;
     private Label labelTotalErrores;
     private Label labelTotalLineas;
-    private PieChart graficoDistribucion;
+    private BarChart<String, Number> graficoDistribucion;
     private File archivoActual;
 
     private final ObservableList<Token> tokens = FXCollections.observableArrayList();
@@ -149,7 +152,6 @@ public class VentanaPrincipal extends Application {
         panel.setPrefWidth(420);
         panel.setPadding(new Insets(0, 0, 0, 4));
 
-        // --- Resumen rapido (estilo "balance card" oscura) ---
         HBox resumen = new HBox(20);
         labelTotalTokens = new Label("0");
         labelTotalErrores = new Label("0");
@@ -162,7 +164,6 @@ public class VentanaPrincipal extends Application {
         VBox resumenCard = new VBox(resumen);
         resumenCard.getStyleClass().add("card-oscura");
 
-        // --- Tabla de tokens ---
         Label tituloTokens = new Label("Tokens reconocidos");
         tituloTokens.getStyleClass().add("card-titulo");
         tablaTokens = construirTablaTokens();
@@ -171,19 +172,23 @@ public class VentanaPrincipal extends Application {
         tokensCard.getStyleClass().add("card");
         VBox.setVgrow(tokensCard, Priority.ALWAYS);
 
-        // --- Tabla de errores ---
         Label tituloErrores = new Label("Errores léxicos");
         tituloErrores.getStyleClass().add("card-titulo");
         tablaErrores = construirTablaErrores();
         VBox erroresCard = new VBox(8, tituloErrores, tablaErrores);
         erroresCard.getStyleClass().add("card");
 
-        // --- Grafico de distribucion ---
         Label tituloGrafico = new Label("Distribución por tipo");
         tituloGrafico.getStyleClass().add("card-titulo");
-        graficoDistribucion = new PieChart();
+
+        CategoryAxis ejeX = new CategoryAxis();
+        NumberAxis ejeY = new NumberAxis();
+        ejeY.setLabel("Cantidad");
+        graficoDistribucion = new BarChart<>(ejeX, ejeY);
         graficoDistribucion.setLegendVisible(false);
-        graficoDistribucion.setPrefHeight(180);
+        graficoDistribucion.setAnimated(true);
+        graficoDistribucion.setPrefHeight(220);
+        graficoDistribucion.setCategoryGap(6);
         VBox graficoCard = new VBox(8, tituloGrafico, graficoDistribucion);
         graficoCard.getStyleClass().add("card");
 
@@ -300,11 +305,11 @@ public class VentanaPrincipal extends Application {
         for (Token t : tokens) {
             frecuencia.merge(t.getTipo(), 1, Integer::sum);
         }
-        ObservableList<PieChart.Data> datos = FXCollections.observableArrayList();
+        XYChart.Series<String, Number> serie = new XYChart.Series<>();
         for (Map.Entry<TipoToken, Integer> e : frecuencia.entrySet()) {
-            datos.add(new PieChart.Data(e.getKey().toString(), e.getValue()));
+            serie.getData().add(new XYChart.Data<>(e.getKey().toString(), e.getValue()));
         }
-        graficoDistribucion.setData(datos);
+        graficoDistribucion.getData().setAll(serie);
     }
 
     private void generarYAbrirReporteTokens() {

@@ -2,7 +2,7 @@ package com.mycompany.promtzalafd;
 
 /**
  * Enumera todos los tipos de token que reconoce el AFD de PromptZal.
- * Cada valor corresponde a un estado de aceptación del autómata
+ * Cada valor corresponde a un estado de aceptacion del automata
  * (ver docs/AFD_PromptZal_diseno.md).
  */
 public enum TipoToken {
